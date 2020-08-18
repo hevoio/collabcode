@@ -1,0 +1,128 @@
+<html>
+  <head>
+    <title>CollabCode.App | Hevo</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="./favicon_io/manifest.json">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://firepad.io/releases/v1.5.10/firepad.css" />
+    <link rel="stylesheet" href="./app.css"/>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86204265-9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-86204265-9');
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/ace.js"></script>
+    <script src="https://firepad.io/releases/v1.5.10/firepad.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </head>
+
+  <body onload="initApp()">
+    <header>
+      <div class="d-flex align-items-center">
+        <div class="brand-logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path fill="#6c63ff" fill-rule="evenodd" d="M14.134 5.514c.148-.57-.214-1.134-.784-1.28s-1.18.177-1.335.75l-.004.012-2.48 13.488c-.148.57.215 1.134.784 1.28s1.18-.177 1.335-.75l.004-.012 2.48-13.488zm-5.127-.757c-.426-.4-1.116-.4-1.543 0L.923 11.04a1.03 1.03 0 0 0-.017 1.482l6.267 6.282a1.12 1.12 0 0 0 1.543.032 1.03 1.03 0 0 0 .033-1.498l-5.52-5.533 5.778-5.55a1.03 1.03 0 0 0 0-1.498zm7.53 0c-.428-.4-1.118-.4-1.544 0a1.03 1.03 0 0 0 0 1.498l5.778 5.55-5.52 5.533c-.42.422-.405 1.094.033 1.498s1.125.387 1.543-.032l6.267-6.282a1.03 1.03 0 0 0-.017-1.482l-6.54-6.282z"/></svg>
+        </div>
+        <span class="brand-logo-text">CollabCode.App</span>
+      </div>
+
+      <div class="header-actions">
+        <a href="https://github.com/hevoio/hack20-karasuno-collab-edit" target="_blank" class="header-icon-link">
+          <img src="./github.svg">
+        </a>
+
+        <span class="header-action-separator"></span>
+
+        <div id="language_mode_anchor">
+        </div>
+
+        <span class="header-action-separator"></span>
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-toggle="modal"
+          data-target="#share_modal">
+          Share
+        </button>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <div class="p-3 flex-grow-1">
+        <div class="card editor-card">
+          <div id="firepad"></div>
+        </div>
+      </div>
+      <div class="right-panel">
+        <div class="users-view"></div>
+        <div class="powered-by">
+          Made with ❤️ by
+          <a href="https://www.hevodata.com" target="_blank">
+            <img class="hevo-logo" src="https://hevodata.com/static/images/logo-black.svg">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="display_name_modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Enter a nickname</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input class="form-control" type="text" id="display_name_ip" placeholder="Enter nickname">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="share_modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Share Code</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Share the following URL with others to start collaborating</p>
+            <div class="alert alert-info" role="alert" id="modal_share_url">
+              This is a info alert—check it out!
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./firebase.js"></script>
+    <script src="./editor.js"></script>
+    <script src="./dynamic-dropdown.js"></script>
+    <script src="./language-modes.js"></script>
+    <script src="./controls.js"></script>
+    <script src="./users.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
