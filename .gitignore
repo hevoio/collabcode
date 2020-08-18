@@ -19,6 +19,9 @@
 .vs
 .vscode
 
+# Local Config Files
+config.js
+
 # System Files
 .DS_Store
 Thumbs.db

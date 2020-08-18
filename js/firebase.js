@@ -1,8 +1,8 @@
 function initFirebase() {
   firebase.initializeApp({
-    apiKey: 'AIzaSyCmmhValDudkfKl1N9ZKBdrn3HKHN22y2M',
-    authDomain: 'karasuno-df7b7.firebaseio.com/',
-    databaseURL: 'https://karasuno-df7b7.firebaseio.com/'
+    apiKey: FIREBASE_API_KEY,
+    authDomain: FIREBASE_AUTH_DOMAIN,
+    databaseURL: FIREBASE_DATABASE_URL
   });
 }
 
