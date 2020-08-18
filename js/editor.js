@@ -2,7 +2,7 @@ var editor;
 
 function initEditor() {
   editor = ace.edit('firepad');
-  ace.config.set('themePath', './ace');
+  ace.config.set('themePath', './js/ace');
   setTheme('ace/hevo');
 }
 

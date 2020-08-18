@@ -29,11 +29,14 @@ var FirepadUserList = (function() {
     this.userList_ = this.makeUserList_();
     place.appendChild(this.userList_);
 
-    $('#display_name_modal').on('hidden.bs.modal', function (e) {
+    $('.username-form').submit(function(e) {
       var name = $('#display_name_ip').val();
-      console.log(name);
       self.updateSelfName(name);
       self.storeUserName(name);
+
+      $('#display_name_modal').modal('hide')
+
+      return false;
     });
   }
 
@@ -111,7 +114,15 @@ var FirepadUserList = (function() {
 
       var nameDiv = elt('div', name || 'Guest', { 'class': 'firepad-userlist-name' });
 
-      var userDiv = elt('div', [ colorDiv, nameDiv ], {
+      var userContent = [ colorDiv, nameDiv ];
+
+      if (userId === self.userId_) {
+        userContent.push(
+          elt('div', '(You)', { 'class': 'firepad-userlist-current-user-indicator' })
+        );
+      }
+
+      var userDiv = elt('div', userContent, {
         'class': 'firepad-userlist-user ' + 'firepad-user-' + userId
       });
       userId2Element[userId] = userDiv;
