@@ -24,4 +24,4 @@ The content of this repo can be used directly used static files, just do the fol
 
 - This project uses [Ace Editor](https://ace.c9.io/) for the text editor. You can modify the editor as per your requirement according to to [Ace Editor's](https://ace.c9.io/) docs.
 
-- To learn how the real time collaboration features work and extend the same you can check out the [Firepad](https://firepad.io/) website. 
+- To learn how the real time collaboration feature works and extend the same you can check out the [Firepad](https://firepad.io/) website. 
