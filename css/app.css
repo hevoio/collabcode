@@ -165,6 +165,7 @@ select {
   width: 36px;
   height: 36px;
   border-radius: 18px;
+  overflow: hidden;
   background: var(--placeholder-bg-color);
   display: flex;
   align-items: center;
