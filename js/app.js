@@ -13,5 +13,3 @@ function initApp() {
   syncModeChanges();
   setShareURL();
 }
-
-initApp();
