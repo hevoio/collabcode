@@ -144,8 +144,9 @@ select {
 }
 
 .powered-by .hevo-logo {
-  width: 60px;
-  margin-left: 12px;
+  width: 50px;
+  margin-left: 5px;
+  margin-bottom: 5px;
 }
 
 .firepad-userlist-users-container {
